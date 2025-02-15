@@ -2,7 +2,7 @@
 
 NUMBER=$1
 
-if [ $NUMBER gt  17 ]
+if [ $NUMBER -gt  17 ]
 then
     echo "Given number $NUMBER is greater than 17"
 else
