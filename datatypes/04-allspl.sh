@@ -16,3 +16,4 @@ sleep 100 &
 
 echo "PID of last background coommand is: $!"
 
+echo "Exit status of last command or return code of last executed command is: $?"
