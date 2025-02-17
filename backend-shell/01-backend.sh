@@ -52,8 +52,10 @@ if [ $? -ne 0 ]
 then 
     echo "Expense user not created. Please create" | tee -a $LOG_FILE
     useradd expense &>>LOG_FILE
+    VALIDATE $? "User expense adding"
 else
     echo "Expense user is already created...SKIPPING" | tee -a $LOG_FILE
+fi
 
 mkdir -p /app
 VALIDATE $? "Create APP directory"
