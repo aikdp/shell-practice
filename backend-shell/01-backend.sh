@@ -77,7 +77,7 @@ cp /home/ec2-user/shell-practice/backend-shell/backend.service /etc/systemd/syst
 VALIDATE $? "Copy of Backend Service file"
 
 
-dnf list installed mysql -y &>>LOG_FILE
+dnf list installed mysql-server -y &>>LOG_FILE
 if [ $? -ne 0 ]
 then 
     echo -e "$R MYSQL is not installed please Install MYSQL $N" | tee -a $LOG_FILE
