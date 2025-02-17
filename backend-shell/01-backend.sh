@@ -88,8 +88,6 @@ else
     echo -e "$Y MYSQL already installed $N" | tee -a $LOG_FILE
 fi    
 
-systemctl enable backend &>>$LOG_FILE
-VALIDATE $? "Enabled backend"
 
 mysql -h mysql.telugudevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Schema loading"
@@ -98,6 +96,9 @@ VALIDATE $? "Schema loading"
 systemctl daemon-reload  &>>LOG_FILE
 VALIDATE $? "Sysytemc deamon reload"
 
+
+systemctl enable backend &>>$LOG_FILE
+VALIDATE $? "Enabled backend"
 
 
 systemctl restart backend &>>$LOG_FILE
