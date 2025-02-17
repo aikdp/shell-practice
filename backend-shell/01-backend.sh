@@ -76,8 +76,6 @@ VALIDATE $? "Installing NPM dependencies"
 cp /home/ec2-user/shell-practice/backend-shell/backend.service /etc/systemd/system/backend.service  &>>LOG_FILE
 VALIDATE $? "Copy of Backend Service file"
 
-systemctl daemon-reload  &>>LOG_FILE
-VALIDATE $? "Sysytemc deamon reload"
 
 dnf list installed mysql -y &>>LOG_FILE
 if [ $? -ne 0 ]
@@ -94,6 +92,12 @@ fi
 mysql -h mysql.telugudevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Schema loading"
 
+
+systemctl daemon-reload  &>>LOG_FILE
+VALIDATE $? "Sysytemc deamon reload"
+
+systemctl enable backend &>>$LOG_FILE
+VALIDATE $? "Enabled backend"
 
 systemctl restart backend &>>$LOG_FILE
 VALIDATE $? "Retsart backend"
