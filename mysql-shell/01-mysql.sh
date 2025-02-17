@@ -41,7 +41,7 @@ if [ $? -eq 0 ]
 then 
     echo -e "$Y MYSQL SERVER is Already installed $N....Please ignore" | tee -a $LOG_FILE
 else
-    echo -e "MYSQL Server is not installed...$R Please Install MYSQL Server $N" | tee -a $LOG_FILE
+    echo -e "MYSQL Server is not installed...$R Going to Install MYSQL Server $N" | tee -a $LOG_FILE
     dnf install mysql-server -y &>>$LOG_FILE
     CHECK $? "MYSQL installation"
 fi    
