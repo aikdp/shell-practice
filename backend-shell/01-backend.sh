@@ -69,7 +69,7 @@ unzip /tmp/backend.zip  &>>LOG_FILE
 VALIDATE $? "Extracting Backend code"
 
 cd /app
-npm install | tee -a $LOG_FILE
+npm install &>>LOG_FILE
 VALIDATE $? "Installing NPM dependencies"
 
 
@@ -91,7 +91,7 @@ else
 fi    
 
 
-mysql -h <MYSQL-SERVER-IPADDRESS> -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
+mysql -h mysql.telugudevops.online -uroot -pExpenseApp@1 < /app/schema/backend.sql &>>$LOG_FILE
 VALIDATE $? "Schema loading"
 
 
