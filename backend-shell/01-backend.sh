@@ -27,7 +27,7 @@ VALIDATE(){
 ROOT(){
     if [ $USERID -ne 0 ]
     then
-        echo -e "$R Pease run script with ROOT PREVILEGES. Example: sh $0 $N"
+        echo -e "$R Pease run script with ROOT PREVILEGES. Example: sudo sh $0 $N"
         exit 1
     fi
 }
@@ -35,7 +35,7 @@ ROOT
 
 
 #Usage Script
-echo "$R USAGE::$N Script executed at: $TIME_STAMP"
+echo -e "$R USAGE::$N Script executed at: $TIME_STAMP"
 
 
 dnf module disable nodejs -y  &>>LOG_FILE
