@@ -59,3 +59,6 @@ VALIDATE $? "Copy conf info to expense.conf"
 
 systemctl restart nginx &>> LOG_FILE
 VALIDATE $? "Restarting NGINX"
+
+systemctl status nginx | tee -a $LOG_FILE
+VALIDATE $? "Restarting NGINX"
