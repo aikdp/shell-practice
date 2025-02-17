@@ -18,6 +18,7 @@ VALIDATE(){
     if [ $1 -ne 0 ]
     then
         echo -e "$2 is: $R FAILED $N"
+        exit 1
     else
         echo -e "$2 is: $G SUCCESS $N"
     fi
@@ -27,6 +28,7 @@ ROOT(){
     if [ $USERID -ne 0 ]
     then
         echo -e "$R Pease run script with ROOT PREVILEGES. Example: sh $0 $N"
+        exit 1
     fi
 }
 ROOT
