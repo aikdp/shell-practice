@@ -6,7 +6,7 @@ LOG_FOLDER="/var/log/shell-practice"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIME_STAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME-$TIME_STAMP.log"
-mkdir -p $LOG_FOLDER
+mkdir -p $LOG_FOLDER    #-p means if directory is already installed ignore, else create dir
 
 #colors
 R="\e[31m"
@@ -24,6 +24,8 @@ ROOT(){
         exit 1
     fi
 }
+ROOT
+
 #validate using functions
 CHECK(){
     if [ $1 -eq 0 ]
@@ -34,10 +36,19 @@ CHECK(){
         exit 1    
     fi
 }
-ROOT
+
 #Creating mysql for expense project
-dnf install mysql-server -y &>>$LOG_FILE
-CHECK $? "Installing MYSQL Server" 
+dnf list installed mysql-server -y &>>$LOG_FILE
+if [ $? -ne 0 ]
+then 
+    echo -e "$R MYSQL is not installed please Install MYSQL $N"
+    dnf install mysql-server -y &>>$LOG_FILE
+    CHECK $? "MySQL is Installing"
+
+else 
+    echo -e "$Y MYSQL already installed $N"
+fi    
+
 
 systemctl enable mysqld &>>$LOG_FILE
 CHECK $? "Enabling MYSQL Server" 
@@ -45,7 +56,7 @@ CHECK $? "Enabling MYSQL Server"
 systemctl start mysqld &>>$LOG_FILE
 CHECK $? "Started MYSQL Server"
 
-mysql -h mysql.telugudevops.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE
+mysql -h mysql.telugudevops.online -u root -pExpenseApp@1 -e 'show databases;' &>>$LOG_FILE     # u can check without login into database
 if [ $? -eq 0 ]
 then
     echo "ROOT Password is already setup ,,,,SKIPPING" | tee -a $LOG_FILE

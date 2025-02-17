@@ -73,13 +73,13 @@ then
     echo -e " $R MYSQL is not installed please Install MYSQL $N"
 
     dnf install mysql -y 
-    if [ $? -ne 0 ]
-    then
-        echo -e "command is... $R ERROR $N"
-        exit 1
-    else   
-        echo -e "Installing MYSQL... $G SUCCESS $N"
-    fi
+        if [ $? -ne 0 ]
+        then
+            echo -e "command is... $R ERROR $N"
+            exit 1
+        else   
+            echo -e "Installing MYSQL... $G SUCCESS $N"
+        fi
 
 else 
     echo -e " $Y MYSQL already installed $N"
