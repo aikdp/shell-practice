@@ -7,8 +7,8 @@ THRESHOLD=5
 while IFS= read -r line
     do 
         # echo "The lines are: $line"
-        USAGE=$(echo $line | grep xfs | awk -F " " '{print $6F}' | cut -d "%" -f1)
-        PARTITION=$(echo $line | grep xfs | awk -F " " '{print $NF}')
+        USAGE=$(echo $line | awk -F " " '{print $6F}' | cut -d "%" -f1)
+        PARTITION=$(echo $line | awk -F " " '{print $NF}')
 
         if [ $USAGE -gt $THRESHOLD ]
         then    
