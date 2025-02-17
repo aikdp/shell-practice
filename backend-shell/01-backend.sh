@@ -68,7 +68,7 @@ rm -rf /app/*
 unzip /tmp/backend.zip  &>>LOG_FILE
 VALIDATE $? "Extracting Backend code"
 
-cd /app
+# cd /app
 npm install &>>LOG_FILE
 VALIDATE $? "Installing NPM dependencies"
 
