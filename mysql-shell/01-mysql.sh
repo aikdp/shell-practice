@@ -36,7 +36,7 @@ ROOT
 echo " Script execution is started at: $(date)" | tee -a $LOG_FILE
 
 
-dnf list installed mysql &>>$LOG_FILE
+dnf list installed mysql-server &>>$LOG_FILE
 if [ $? -eq 0 ]
 then 
     echo -e "$Y MYSQL SERVER is Already installed $N....Please ignore" | tee -a $LOG_FILE
@@ -46,7 +46,7 @@ else
     CHECK $? "MYSQL installation"
 fi    
 
-systemctl enable mysqld &>>$LOG_FILE
+systemctl enable mysqld  &>>$LOG_FILE
 CHECK $? "ENABLING MYSQL Service"
  
 systemctl start mysqld &>>$LOG_FILE
