@@ -47,7 +47,7 @@ VALIDATE $? "NodeJS-20 Enabling"
 dnf install nodejs -y &>>LOG_FILE
 VALIDATE $? "NodeJS Installation"
 
-id expense 
+id expense &>>LOG_FILE
 if [ $? -ne 0 ]
 then 
     echo "Expense user not created. Please create" | tee -a $LOG_FILE
